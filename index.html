@@ -934,9 +934,6 @@
   document.getElementById('prevBtn').onclick = () => goTo(current - 1);
   document.getElementById('nextBtn').onclick = () => goTo(current + 1);
 
-  // Auto-advance
-  setInterval(() => goTo(current + 1), 4500);
-
   // Drag support
   let startX = 0;
   track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive: true});
