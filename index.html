@@ -757,6 +757,86 @@
     padding: 3px;
   }
 
+  /* COOKIE BANNER */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 500;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(245,240,232,0.1);
+    box-shadow: 0 -8px 40px rgba(26,21,16,0.25);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .cookie-banner.visible { transform: translateY(0); }
+
+  .cookie-text {
+    font-size: 14px;
+    color: rgba(245,240,232,0.75);
+    font-weight: 300;
+    line-height: 1.55;
+    max-width: 680px;
+    flex: 1;
+  }
+
+  .cookie-text a {
+    color: var(--orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .cookie-accept {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .cookie-accept:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+  .cookie-decline {
+    background: transparent;
+    color: rgba(245,240,232,0.5);
+    border: 1px solid rgba(245,240,232,0.2);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .cookie-decline:hover { color: var(--cream); border-color: rgba(245,240,232,0.5); }
+
+  @media (max-width: 900px) {
+    .cookie-banner { padding: 16px 24px; }
+    .cookie-text { font-size: 13px; }
+  }
+
   /* LIGHTBOX */
   .lightbox {
     display: none;
@@ -1030,6 +1110,15 @@
   </div>
 </footer>
 
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <p class="cookie-text" id="cookieText">This website uses cookies and similar technologies for analytics and performance. By clicking "Accept" you consent to their use. <a href="/privacy" id="cookiePrivacyLink">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-decline" id="cookieDecline" onclick="cookieDecline()">Decline</button>
+    <button class="cookie-accept" id="cookieAccept" onclick="cookieAccept()">Accept</button>
+  </div>
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">
@@ -1084,6 +1173,10 @@
       cta_btn: 'Add to Wishlist on Steam',
       footer_rights: 'All rights reserved',
       privacy: 'Privacy Policy',
+      cookie_text: 'This website uses cookies and similar technologies for analytics and performance. By clicking "Accept" you consent to their use.',
+      cookie_accept: 'Accept',
+      cookie_decline: 'Decline',
+      cookie_privacy: 'Privacy Policy',
     },
     ru: {
       nav_about: 'Об игре',
@@ -1128,6 +1221,10 @@
       cta_btn: 'Добавить в вишлист на Steam',
       footer_rights: 'Все права защищены',
       privacy: 'Политика конфиденциальности',
+      cookie_text: 'Этот сайт использует файлы cookie и аналогичные технологии для аналитики и улучшения работы. Нажимая «Принять», вы соглашаетесь с их использованием.',
+      cookie_accept: 'Принять',
+      cookie_decline: 'Отклонить',
+      cookie_privacy: 'Политика конфиденциальности',
     },
     zh: {
       nav_about: '关于',
@@ -1172,6 +1269,10 @@
       cta_btn: '加入 Steam 愿望单',
       footer_rights: '保留所有权利',
       privacy: '隐私政策',
+      cookie_text: '本网站使用 Cookie 及类似技术进行分析和性能优化。点击"接受"即表示您同意其使用。',
+      cookie_accept: '接受',
+      cookie_decline: '拒绝',
+      cookie_privacy: '隐私政策',
     }
   };
 
@@ -1187,6 +1288,15 @@
       const key = el.getAttribute('data-i18n');
       if (t[key] !== undefined) el.innerHTML = t[key];
     });
+
+    // Update cookie banner text
+    const ct = document.getElementById('cookieText');
+    const cpl = document.getElementById('cookiePrivacyLink');
+    const ca = document.getElementById('cookieAccept');
+    const cd = document.getElementById('cookieDecline');
+    if (ct) ct.innerHTML = t.cookie_text + ' <a href="/privacy" id="cookiePrivacyLink">' + t.cookie_privacy + '</a>';
+    if (ca) ca.textContent = t.cookie_accept;
+    if (cd) cd.textContent = t.cookie_decline;
 
     // Update active state on all switchers
     ['en','ru','zh'].forEach(l => {
@@ -1206,6 +1316,56 @@
     const browserLang = navigator.language.slice(0,2).toLowerCase();
     const detected = saved || (T[browserLang] ? browserLang : 'en');
     if (detected !== 'en') setLang(detected);
+  })();
+
+  // ── GOOGLE ANALYTICS ─────────────────────────────────────────
+  const GA_ID = 'G-BEGVGCSTRN';
+
+  function loadGA() {
+    if (window._gaLoaded) return;
+    window._gaLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
+  }
+
+  // ── COOKIE CONSENT ────────────────────────────────────────────
+  const COOKIE_KEY = 'cookie_consent';
+
+  function cookieAccept() {
+    try { localStorage.setItem(COOKIE_KEY, 'accepted'); } catch(e) {}
+    hideBanner();
+    loadGA();
+  }
+
+  function cookieDecline() {
+    try { localStorage.setItem(COOKIE_KEY, 'declined'); } catch(e) {}
+    hideBanner();
+  }
+
+  function hideBanner() {
+    const b = document.getElementById('cookieBanner');
+    b.classList.remove('visible');
+    setTimeout(() => b.style.display = 'none', 400);
+  }
+
+  // Show banner or load GA based on saved consent
+  (function() {
+    let consent;
+    try { consent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+    if (consent === 'accepted') {
+      loadGA();
+    } else if (!consent) {
+      // Show banner after short delay
+      setTimeout(() => {
+        document.getElementById('cookieBanner').classList.add('visible');
+      }, 800);
+    }
   })();
 
   // ── YOUTUBE LAZY LOAD ─────────────────────────────────────────
