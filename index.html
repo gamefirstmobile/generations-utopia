@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generations: Utopia — City Builder on Steam</title>
-<meta name="description" content="An ironic city-builder about the conflict of generations. Build the city of the future while balancing the interests of 5 generations. Coming to Steam.">
+<meta name="description" content="A game about building a city for every generation. Coming to Steam.">
 <meta property="og:title" content="Generations: Utopia">
-<meta property="og:description" content="Build the city of the future. Manage protests, crises and social tension — where every generation thinks you're doing it wrong.">
+<meta property="og:description" content="A game about building a city for every generation.">
 <meta property="og:image" content="images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -43,14 +42,11 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image:
-      repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 31px,
-        rgba(26,21,16,0.06) 31px,
-        rgba(26,21,16,0.06) 32px
-      );
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent, transparent 31px,
+      rgba(26,21,16,0.06) 31px, rgba(26,21,16,0.06) 32px
+    );
     pointer-events: none;
     z-index: 0;
   }
@@ -58,14 +54,12 @@
   /* NAV */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 48px;
+    gap: 32px;
+    padding: 14px 48px;
     background: rgba(245,240,232,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
@@ -75,18 +69,75 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    flex-shrink: 0;
   }
 
   .nav-logo img {
-    height: 36px;
+    height: 34px;
     width: auto;
     display: block;
     filter: brightness(0) opacity(0.82);
     transition: filter 0.2s;
   }
 
-  .nav-logo:hover img {
-    filter: brightness(0) opacity(1);
+  .nav-logo:hover img { filter: brightness(0) opacity(1); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* LANG SWITCHER */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(26,21,16,0.06);
+    border-radius: 6px;
+    padding: 3px;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-btn:hover { color: var(--ink); }
+
+  .lang-btn.active {
+    background: var(--cream);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(26,21,16,0.1);
   }
 
   .nav-wishlist {
@@ -102,6 +153,7 @@
     border-radius: 6px;
     transition: background 0.2s, transform 0.15s;
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
 
   .nav-wishlist:hover {
@@ -173,10 +225,7 @@
     margin-bottom: 8px;
   }
 
-  .hero-title strong {
-    font-weight: 700;
-    color: var(--orange);
-  }
+  .hero-title strong { font-weight: 700; color: var(--orange); }
 
   .hero-sub {
     font-size: clamp(16px, 2vw, 20px);
@@ -232,7 +281,7 @@
     50% { transform: translateY(6px); }
   }
 
-  /* ABOUT */
+  /* SECTION */
   .section {
     position: relative;
     z-index: 1;
@@ -262,11 +311,12 @@
 
   .section-title strong { font-weight: 700; }
 
+  /* ABOUT */
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;
-    align-items: center;
+    align-items: start;
   }
 
   .about-text p {
@@ -278,7 +328,6 @@
   }
 
   .about-text p:last-child { margin-bottom: 0; }
-
   .about-text strong { color: var(--ink); font-weight: 500; }
 
   .about-visual {
@@ -296,6 +345,35 @@
     border: none;
     display: block;
   }
+
+  /* YOUTUBE FOLLOW BUTTON */
+  .yt-follow-wrap {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .yt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FF0000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .yt-btn:hover {
+    background: #cc0000;
+    transform: translateY(-1px);
+  }
+
+  .yt-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   /* DIVIDER */
   .divider {
@@ -332,7 +410,7 @@
 
   .slide {
     flex-shrink: 0;
-    width: calc(55vw);
+    width: 55vw;
     max-width: 800px;
     border-radius: 10px;
     overflow: hidden;
@@ -415,14 +493,11 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-      repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 31px,
-        rgba(245,240,232,0.04) 31px,
-        rgba(245,240,232,0.04) 32px
-      );
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent, transparent 31px,
+      rgba(245,240,232,0.04) 31px, rgba(245,240,232,0.04) 32px
+    );
     pointer-events: none;
   }
 
@@ -447,9 +522,7 @@
     transition: background 0.3s;
   }
 
-  .feature-card:hover {
-    background: rgba(245,240,232,0.04);
-  }
+  .feature-card:hover { background: rgba(245,240,232,0.04); }
 
   .feature-img {
     width: 100%;
@@ -501,18 +574,14 @@
   .cta-section::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: 600px; height: 600px;
     background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  .cta-section .section-title {
-    margin-bottom: 20px;
-  }
+  .cta-section .section-title { margin-bottom: 20px; }
 
   .cta-subtitle {
     font-size: 18px;
@@ -583,7 +652,7 @@
     position: relative;
     z-index: 1;
     border-top: 1px solid var(--line);
-    padding: 40px 48px;
+    padding: 32px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -592,14 +661,18 @@
   }
 
   .footer-logo {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink);
+    display: flex;
+    align-items: center;
     text-decoration: none;
   }
 
-  .footer-logo span { color: var(--orange); }
+  .footer-logo img {
+    height: 28px;
+    filter: brightness(0) opacity(0.7);
+    transition: filter 0.2s;
+  }
+
+  .footer-logo:hover img { filter: brightness(0) opacity(1); }
 
   .footer-copy {
     font-size: 13px;
@@ -607,19 +680,42 @@
     font-weight: 300;
   }
 
+  .footer-copy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .footer-copy a:hover { opacity: 1; }
+
+  .footer-center {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .footer-social {
     display: flex;
     gap: 12px;
   }
 
-  .footer-social a {
-    color: var(--muted);
-    transition: color 0.2s;
-  }
-
+  .footer-social a { color: var(--muted); transition: color 0.2s; }
   .footer-social a:hover { color: var(--orange); }
-
   .footer-social svg { width: 18px; height: 18px; display: block; }
+
+  /* FOOTER LANG SWITCHER */
+  .footer-lang {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(26,21,16,0.06);
+    border-radius: 6px;
+    padding: 3px;
+  }
 
   /* LIGHTBOX */
   .lightbox {
@@ -644,8 +740,7 @@
 
   .lightbox-close {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 24px; right: 24px;
     background: none;
     border: none;
     cursor: pointer;
@@ -658,8 +753,12 @@
   .lightbox-close svg { width: 28px; height: 28px; }
 
   /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+  }
+
   @media (max-width: 900px) {
-    nav { padding: 14px 24px; }
+    nav { padding: 12px 24px; gap: 12px; }
     .hero-content { padding: 0 24px 64px; }
     .section { padding: 72px 24px; }
     .divider { margin: 0 24px; }
@@ -667,17 +766,17 @@
     .slider-track { padding: 0 24px; }
     .slider-controls { padding: 24px 24px 0; }
     .slide { width: 80vw; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
     .features-grid { grid-template-columns: 1fr; }
     .features-section { padding: 72px 24px; }
     .cta-section { padding: 80px 24px; }
-    footer { padding: 32px 24px; }
+    footer { padding: 24px; }
     .hero-scroll { right: 24px; }
   }
 
   @media (max-width: 600px) {
-    .features-grid { grid-template-columns: 1fr; }
     .hero-scroll { display: none; }
+    .nav-wishlist span { display: none; }
   }
 </style>
 </head>
@@ -688,59 +787,79 @@
   <a class="nav-logo" href="#">
     <img src="images/logo.png" alt="Generations Utopia">
   </a>
-  <a class="nav-wishlist" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=hero_button&utm_campaign=wishlist_top" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.718L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.606 0 11.979 0z"/></svg>
-    Wishlist on Steam
-  </a>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
+    <a href="#features" data-i18n="nav_features">Features</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ru" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" id="lang-zh" onclick="setLang('zh')">中文</button>
+    </div>
+    <a class="nav-wishlist" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=hero_button&utm_campaign=wishlist_top" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.718L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.606 0 11.979 0z"/></svg>
+      <span data-i18n="nav_wishlist">Wishlist on Steam</span>
+    </a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <span class="hero-tag">Coming to Steam · City Builder</span>
+    <span class="hero-tag" data-i18n="hero_tag">Coming to Steam · City Builder</span>
     <h1 class="hero-title">
       Generations<br>
       <strong>Utopia</strong>
     </h1>
-    <p class="hero-sub">Build a city where all generations can live together.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Build a city where all generations can live together.</p>
     <a class="hero-cta" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=hero_button&utm_campaign=wishlist_top" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.718L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.606 0 11.979 0z"/></svg>
-      Add to Wishlist on Steam
+      <span data-i18n="hero_cta">Add to Wishlist on Steam</span>
     </a>
   </div>
   <div class="hero-scroll">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    scroll
+    <span data-i18n="scroll">scroll</span>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section">
+<section class="section" id="about">
   <div class="about-grid">
     <div class="about-text">
-      <p class="section-label">About the game</p>
-      <h2 class="section-title">An ironic city-builder about the<br><strong>conflict of generations</strong></h2>
-      <p>Generations: Utopia is a city-builder simulation where you manage a growing city across five generations — the Silent Generation, Boomers, Gen X, Millennials and Gen Z.</p>
-      <p>Each generation has its own values, demands and grievances. Build roads, develop the economy, and deal with protests, crises, and social tension — all while every generation is convinced you're doing it completely wrong.</p>
-      <p><strong>More than a city-builder.</strong> A deep societal simulation where decisions have real, unpredictable consequences.</p>
+      <p class="section-label" data-i18n="about_label">About the game</p>
+      <h2 class="section-title" data-i18n="about_title">A game about building a city for <strong>every generation.</strong></h2>
+      <p data-i18n="about_p1">Generations: Utopia is a city-builder simulation where you manage a growing city across five generations — the Silent Generation, Boomers, Gen X, Millennials and Gen Z.</p>
+      <p data-i18n="about_p2">Each generation has its own values, demands and grievances. Build roads, develop the economy, and deal with protests, crises, and social tension — all while every generation is convinced you're doing it completely wrong.</p>
+      <p data-i18n="about_p3"><strong>More than a city-builder.</strong> A deep societal simulation where decisions have real, unpredictable consequences.</p>
     </div>
-    <div class="about-visual">
-      <iframe
-        src="https://www.youtube.com/embed/Gz6taWYiDEo"
-        title="Generations Utopia gameplay trailer"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+    <div>
+      <div class="about-visual">
+        <iframe
+          src="https://www.youtube.com/embed/Gz6taWYiDEo"
+          title="Generations Utopia gameplay trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-follow-wrap">
+        <a class="yt-btn" href="https://www.youtube.com/@TomYumGames" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span data-i18n="yt_follow">Follow on YouTube</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SCREENSHOTS SLIDER -->
-<div class="slider-section">
+<div class="slider-section" id="screenshots">
   <div class="slider-header">
-    <p class="section-label">Screenshots</p>
-    <h2 class="section-title">Different generations. <strong>One city.</strong></h2>
+    <p class="section-label" data-i18n="screenshots_label">Screenshots</p>
+    <h2 class="section-title" data-i18n="screenshots_title">Different generations. <strong>One city.</strong></h2>
   </div>
   <div class="slider-track-wrap">
     <div class="slider-track" id="sliderTrack">
@@ -766,48 +885,48 @@
 <div class="divider"></div>
 
 <!-- FEATURES -->
-<section class="features-section">
+<section class="features-section" id="features">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="section-label">Key systems</p>
-    <h2 class="section-title">What makes it different</h2>
+    <p class="section-label" data-i18n="features_label">Key systems</p>
+    <h2 class="section-title" data-i18n="features_title">What makes it different</h2>
     <div class="features-grid">
       <div class="feature-card">
         <img class="feature-img" src="images/feat1.jpg" alt="Transport & Logistics" loading="lazy">
-        <div class="feature-num">01 / Transport & Logistics</div>
-        <div class="feature-title">Roads, Transit & Mobility</div>
-        <p class="feature-desc">Build transport networks that every generation judges differently. Boomers want parking; Gen Z wants bike lanes. You decide.</p>
+        <div class="feature-num" data-i18n="feat1_num">01 / Transport &amp; Logistics</div>
+        <div class="feature-title" data-i18n="feat1_title">Roads, Transit &amp; Mobility</div>
+        <p class="feature-desc" data-i18n="feat1_desc">Build transport networks that every generation judges differently. Boomers want parking; Gen Z wants bike lanes. You decide.</p>
       </div>
       <div class="feature-card">
         <img class="feature-img" src="images/feat2.jpg" alt="Economy & Development" loading="lazy">
-        <div class="feature-num">02 / Economy & Development</div>
-        <div class="feature-title">Markets & Growth</div>
-        <p class="feature-desc">Balance economic policies across conflicting generational interests. Every reform pleases one group and angers another.</p>
+        <div class="feature-num" data-i18n="feat2_num">02 / Economy &amp; Development</div>
+        <div class="feature-title" data-i18n="feat2_title">Markets &amp; Growth</div>
+        <p class="feature-desc" data-i18n="feat2_desc">Balance economic policies across conflicting generational interests. Every reform pleases one group and angers another.</p>
       </div>
       <div class="feature-card">
         <img class="feature-img" src="images/feat3.jpg" alt="Infrastructure & Energy" loading="lazy">
-        <div class="feature-num">03 / Infrastructure & Energy</div>
-        <div class="feature-title">Power & Resources</div>
-        <p class="feature-desc">Keep the lights on, the grid stable, and the older generation from blaming you for the blackouts they predicted.</p>
+        <div class="feature-num" data-i18n="feat3_num">03 / Infrastructure &amp; Energy</div>
+        <div class="feature-title" data-i18n="feat3_title">Power &amp; Resources</div>
+        <p class="feature-desc" data-i18n="feat3_desc">Keep the lights on, the grid stable, and the older generation from blaming you for the blackouts they predicted.</p>
       </div>
       <div class="feature-card">
         <img class="feature-img" src="images/feat4.jpg" alt="Society & Culture" loading="lazy">
-        <div class="feature-num">04 / Society & Culture</div>
-        <div class="feature-title">Culture & Social Life</div>
-        <p class="feature-desc">Theatres, parks, festivals. What counts as culture depends entirely on who you ask — and someone is always asking.</p>
+        <div class="feature-num" data-i18n="feat4_num">04 / Society &amp; Culture</div>
+        <div class="feature-title" data-i18n="feat4_title">Culture &amp; Social Life</div>
+        <p class="feature-desc" data-i18n="feat4_desc">Theatres, parks, festivals. What counts as culture depends entirely on who you ask — and someone is always asking.</p>
       </div>
       <div class="feature-card">
         <img class="feature-img" src="images/feat5.jpg" alt="Safety & Ecology" loading="lazy">
-        <div class="feature-num">05 / Safety & Ecology</div>
-        <div class="feature-title">Security & Environment</div>
-        <p class="feature-desc">Protests, riots, natural disasters and environmental crises. React fast — or spend a decade rebuilding trust you never had.</p>
+        <div class="feature-num" data-i18n="feat5_num">05 / Safety &amp; Ecology</div>
+        <div class="feature-title" data-i18n="feat5_title">Security &amp; Environment</div>
+        <p class="feature-desc" data-i18n="feat5_desc">Protests, riots, natural disasters and environmental crises. React fast — or spend a decade rebuilding trust you never had.</p>
       </div>
-      <div class="feature-card" style="background: rgba(232,98,42,0.08); border-color: rgba(232,98,42,0.2);">
-        <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; min-height: 200px;">
-          <div class="feature-num" style="color: var(--orange);">Coming to Steam</div>
-          <div class="feature-title" style="font-size:28px; margin-bottom: 20px;">Build for one generation.<br>Lose another.</div>
-          <a class="hero-cta" style="align-self: flex-start; font-size:14px; padding: 12px 24px;" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=features_button&utm_campaign=wishlist_mid" target="_blank" rel="noopener">
+      <div class="feature-card" style="background:rgba(232,98,42,0.08);border-color:rgba(232,98,42,0.2);">
+        <div style="height:100%;display:flex;flex-direction:column;justify-content:center;min-height:200px;">
+          <div class="feature-num" style="color:var(--orange);" data-i18n="feat6_label">Coming to Steam</div>
+          <div class="feature-title" style="font-size:28px;margin-bottom:20px;" data-i18n="feat6_title">Build for one generation.<br>Lose another.</div>
+          <a class="hero-cta" style="align-self:flex-start;font-size:14px;padding:12px 24px;" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=features_button&utm_campaign=wishlist_mid" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            Wishlist Now
+            <span data-i18n="feat6_btn">Wishlist Now</span>
           </a>
         </div>
       </div>
@@ -817,15 +936,14 @@
 
 <!-- CTA BOTTOM -->
 <section class="cta-section">
-  <p class="section-label">Don't miss the launch</p>
-  <h2 class="section-title">Build a city where all generations<br><strong>can live together.</strong></h2>
-  <p class="cta-subtitle">Wishlist on Steam and get notified the moment Generations: Utopia launches.</p>
+  <p class="section-label" data-i18n="cta_label">Don't miss the launch</p>
+  <h2 class="section-title" data-i18n="cta_title">Build a city where all generations<br><strong>can live together.</strong></h2>
+  <p class="cta-subtitle" data-i18n="cta_subtitle">Wishlist on Steam and get notified the moment Generations: Utopia launches.</p>
   <a class="cta-btn" href="https://store.steampowered.com/app/4498300/Generations_Utopia/?utm_source=site&utm_medium=footer_button&utm_campaign=wishlist_bottom" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.718L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.606 0 11.979 0z"/></svg>
-    Add to Wishlist on Steam
+    <span data-i18n="cta_btn">Add to Wishlist on Steam</span>
   </a>
 
-  <!-- Social -->
   <div class="social-row">
     <a class="social-link" href="https://t.me/TomYumGames" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.51 14.453l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.836.953l-.53-.82z"/></svg>
@@ -848,8 +966,17 @@
 
 <!-- FOOTER -->
 <footer>
-  <a class="footer-logo" href="#"><span>Generations</span>: Utopia</a>
-  <span class="footer-copy">© 2025 Tom Yum Games · All rights reserved · <a href="/privacy" style="color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:0.7;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Privacy Policy</a></span>
+  <a class="footer-logo" href="#">
+    <img src="images/logo.png" alt="Generations Utopia">
+  </a>
+  <div class="footer-center">
+    <span class="footer-copy">© 2025 Tom Yum Games · <span data-i18n="footer_rights">All rights reserved</span> · <a href="/privacy" data-i18n="privacy">Privacy Policy</a></span>
+    <div class="footer-lang">
+      <button class="lang-btn active" id="footer-lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="footer-lang-ru" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" id="footer-lang-zh" onclick="setLang('zh')">中文</button>
+    </div>
+  </div>
   <div class="footer-social">
     <a href="https://t.me/TomYumGames" target="_blank" rel="noopener" aria-label="Telegram">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.51 14.453l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.836.953l-.53-.82z"/></svg>
@@ -872,7 +999,176 @@
 </div>
 
 <script>
-  // SLIDER
+  // ── TRANSLATIONS ──────────────────────────────────────────────
+  const T = {
+    en: {
+      nav_about: 'About',
+      nav_screenshots: 'Screenshots',
+      nav_features: 'Features',
+      nav_wishlist: 'Wishlist on Steam',
+      hero_tag: 'Coming to Steam · City Builder',
+      hero_sub: 'Build a city where all generations can live together.',
+      hero_cta: 'Add to Wishlist on Steam',
+      scroll: 'scroll',
+      about_label: 'About the game',
+      about_title: 'A game about building a city for <strong>every generation.</strong>',
+      about_p1: 'Generations: Utopia is a city-builder simulation where you manage a growing city across five generations — the Silent Generation, Boomers, Gen X, Millennials and Gen Z.',
+      about_p2: 'Each generation has its own values, demands and grievances. Build roads, develop the economy, and deal with protests, crises, and social tension — all while every generation is convinced you\'re doing it completely wrong.',
+      about_p3: '<strong>More than a city-builder.</strong> A deep societal simulation where decisions have real, unpredictable consequences.',
+      yt_follow: 'Follow on YouTube',
+      screenshots_label: 'Screenshots',
+      screenshots_title: 'Different generations. <strong>One city.</strong>',
+      features_label: 'Key systems',
+      features_title: 'What makes it different',
+      feat1_num: '01 / Transport & Logistics',
+      feat1_title: 'Roads, Transit & Mobility',
+      feat1_desc: 'Build transport networks that every generation judges differently. Boomers want parking; Gen Z wants bike lanes. You decide.',
+      feat2_num: '02 / Economy & Development',
+      feat2_title: 'Markets & Growth',
+      feat2_desc: 'Balance economic policies across conflicting generational interests. Every reform pleases one group and angers another.',
+      feat3_num: '03 / Infrastructure & Energy',
+      feat3_title: 'Power & Resources',
+      feat3_desc: 'Keep the lights on, the grid stable, and the older generation from blaming you for the blackouts they predicted.',
+      feat4_num: '04 / Society & Culture',
+      feat4_title: 'Culture & Social Life',
+      feat4_desc: 'Theatres, parks, festivals. What counts as culture depends entirely on who you ask — and someone is always asking.',
+      feat5_num: '05 / Safety & Ecology',
+      feat5_title: 'Security & Environment',
+      feat5_desc: 'Protests, riots, natural disasters and environmental crises. React fast — or spend a decade rebuilding trust you never had.',
+      feat6_label: 'Coming to Steam',
+      feat6_title: 'Build for one generation.<br>Lose another.',
+      feat6_btn: 'Wishlist Now',
+      cta_label: "Don't miss the launch",
+      cta_title: 'Build a city where all generations<br><strong>can live together.</strong>',
+      cta_subtitle: 'Wishlist on Steam and get notified the moment Generations: Utopia launches.',
+      cta_btn: 'Add to Wishlist on Steam',
+      footer_rights: 'All rights reserved',
+      privacy: 'Privacy Policy',
+    },
+    ru: {
+      nav_about: 'Об игре',
+      nav_screenshots: 'Скриншоты',
+      nav_features: 'Механики',
+      nav_wishlist: 'В вишлист на Steam',
+      hero_tag: 'Скоро в Steam · Градостроительная игра',
+      hero_sub: 'Построй город, в котором смогут жить все поколения.',
+      hero_cta: 'Добавить в вишлист на Steam',
+      scroll: 'листай',
+      about_label: 'Об игре',
+      about_title: 'Игра о том, как построить город<br><strong>для каждого поколения.</strong>',
+      about_p1: 'Generations: Utopia — градостроительный симулятор, в котором вы управляете растущим городом сквозь пять поколений: Молчаливое поколение, Бумеры, Поколение X, Миллениалы и Зумеры.',
+      about_p2: 'У каждого поколения — свои ценности, требования и обиды. Стройте дороги, развивайте экономику, справляйтесь с протестами, кризисами и социальной напряжённостью — и всё это пока каждое поколение уверено, что вы делаете всё не так.',
+      about_p3: '<strong>Больше, чем градостроитель.</strong> Глубокая социальная симуляция, где каждое решение имеет непредсказуемые последствия.',
+      yt_follow: 'Подписаться на YouTube',
+      screenshots_label: 'Скриншоты',
+      screenshots_title: 'Разные поколения. <strong>Один город.</strong>',
+      features_label: 'Ключевые механики',
+      features_title: 'Чем игра отличается',
+      feat1_num: '01 / Транспорт и логистика',
+      feat1_title: 'Дороги, транзит и мобильность',
+      feat1_desc: 'Стройте транспортные сети, которые каждое поколение оценивает по-своему. Бумеры хотят парковки; Зумеры — велодорожки. Решение за вами.',
+      feat2_num: '02 / Экономика и развитие',
+      feat2_title: 'Рынки и рост',
+      feat2_desc: 'Балансируйте экономическую политику между конфликтующими интересами поколений. Каждая реформа радует одних и злит других.',
+      feat3_num: '03 / Инфраструктура и энергетика',
+      feat3_title: 'Энергия и ресурсы',
+      feat3_desc: 'Не допускайте отключений света, держите сеть стабильной — и пусть старшее поколение не говорит, что вы этого не замечали.',
+      feat4_num: '04 / Общество и культура',
+      feat4_title: 'Культура и социальная жизнь',
+      feat4_desc: 'Театры, парки, фестивали. Что считать культурой — зависит от того, кого спрашивать. А спрашивают всегда.',
+      feat5_num: '05 / Безопасность и экология',
+      feat5_title: 'Безопасность и экология',
+      feat5_desc: 'Протесты, беспорядки, природные катастрофы. Реагируйте быстро — или восстанавливайте доверие, которого никогда и не было.',
+      feat6_label: 'Скоро в Steam',
+      feat6_title: 'Постройте для одного поколения.<br>Потеряйте другое.',
+      feat6_btn: 'В вишлист',
+      cta_label: 'Не пропустите запуск',
+      cta_title: 'Построй город, где все поколения<br><strong>смогут жить вместе.</strong>',
+      cta_subtitle: 'Добавьте в вишлист на Steam и получите уведомление о запуске Generations: Utopia.',
+      cta_btn: 'Добавить в вишлист на Steam',
+      footer_rights: 'Все права защищены',
+      privacy: 'Политика конфиденциальности',
+    },
+    zh: {
+      nav_about: '关于',
+      nav_screenshots: '截图',
+      nav_features: '特色',
+      nav_wishlist: '加入 Steam 愿望单',
+      hero_tag: '即将登陆 Steam · 城市建造',
+      hero_sub: '建造一座所有世代都能共同生活的城市。',
+      hero_cta: '加入 Steam 愿望单',
+      scroll: '滚动',
+      about_label: '关于游戏',
+      about_title: '一款为每个世代<br><strong>建造城市的游戏。</strong>',
+      about_p1: 'Generations: Utopia 是一款城市建造模拟游戏，你需要跨越五个世代管理一座不断发展的城市——沉默的一代、婴儿潮世代、X世代、千禧世代和Z世代。',
+      about_p2: '每个世代都有自己的价值观、诉求和抱怨。建设道路，发展经济，应对抗议、危机和社会紧张局势——而每个世代都坚信你做的一切都是错的。',
+      about_p3: '<strong>不只是城市建造。</strong> 一款深度社会模拟游戏，每一个决定都会带来真实而不可预测的后果。',
+      yt_follow: '关注 YouTube',
+      screenshots_label: '游戏截图',
+      screenshots_title: '不同的世代。<strong>同一座城市。</strong>',
+      features_label: '核心系统',
+      features_title: '与众不同之处',
+      feat1_num: '01 / 交通与物流',
+      feat1_title: '道路、公交与出行',
+      feat1_desc: '建设每个世代都有不同评价的交通网络。婴儿潮世代要停车场；Z世代要自行车道。由你来决定。',
+      feat2_num: '02 / 经济与发展',
+      feat2_title: '市场与增长',
+      feat2_desc: '在不同世代的利益冲突之间平衡经济政策。每一项改革都会让一部分人满意，让另一部分人愤怒。',
+      feat3_num: '03 / 基础设施与能源',
+      feat3_title: '电力与资源',
+      feat3_desc: '保持灯火通明、电网稳定，别让老一辈说他们早就预见到了停电。',
+      feat4_num: '04 / 社会与文化',
+      feat4_title: '文化与社会生活',
+      feat4_desc: '剧院、公园、节日。什么算是文化，完全取决于你问谁——而总有人在问。',
+      feat5_num: '05 / 安全与生态',
+      feat5_title: '安全与环境',
+      feat5_desc: '抗议、骚乱、自然灾害与环境危机。迅速反应——否则花十年重建你从未拥有过的信任。',
+      feat6_label: '即将登陆 Steam',
+      feat6_title: '为一代人而建。<br>失去另一代人。',
+      feat6_btn: '加入愿望单',
+      cta_label: '不要错过发布',
+      cta_title: '建造一座所有世代<br><strong>都能共同生活的城市。</strong>',
+      cta_subtitle: '在 Steam 上加入愿望单，第一时间获得 Generations: Utopia 发布通知。',
+      cta_btn: '加入 Steam 愿望单',
+      footer_rights: '保留所有权利',
+      privacy: '隐私政策',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = T[lang];
+    document.documentElement.lang = lang;
+
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    // Update active state on all switchers
+    ['en','ru','zh'].forEach(l => {
+      document.querySelectorAll(`#lang-${l}, #footer-lang-${l}`).forEach(btn => {
+        btn.classList.toggle('active', l === lang);
+      });
+    });
+
+    // Save preference
+    try { localStorage.setItem('lang', lang); } catch(e) {}
+  }
+
+  // Init language from localStorage or browser
+  (function() {
+    let saved;
+    try { saved = localStorage.getItem('lang'); } catch(e) {}
+    const browserLang = navigator.language.slice(0,2).toLowerCase();
+    const detected = saved || (T[browserLang] ? browserLang : 'en');
+    if (detected !== 'en') setLang(detected);
+  })();
+
+  // ── SLIDER ────────────────────────────────────────────────────
   const track = document.getElementById('sliderTrack');
   const slides = track.querySelectorAll('.slide');
   const dotsContainer = document.getElementById('sliderDots');
@@ -898,7 +1194,6 @@
   document.getElementById('prevBtn').onclick = () => goTo(current - 1);
   document.getElementById('nextBtn').onclick = () => goTo(current + 1);
 
-  // Drag support
   let startX = 0;
   track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive: true});
   track.addEventListener('touchend', e => {
@@ -906,7 +1201,7 @@
     if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
   });
 
-  // LIGHTBOX
+  // ── LIGHTBOX ──────────────────────────────────────────────────
   function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightbox').classList.add('open');
@@ -922,7 +1217,7 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
-  // Fade-in on scroll
+  // ── FADE IN ───────────────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
