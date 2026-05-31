@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Generations: Utopia</title>
+<meta name="description" content="Privacy Policy for generationsutopia.com — Generations: Utopia by Tom Yum Games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --paper: #EDE8DC;
+    --ink: #1A1510;
+    --ink-soft: #3D3529;
+    --muted: #7A6F60;
+    --orange: #E8622A;
+    --orange-dark: #C44E1E;
+    --line: rgba(26,21,16,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent, transparent 31px,
+      rgba(26,21,16,0.06) 31px, rgba(26,21,16,0.06) 32px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+    filter: brightness(0) opacity(0.82);
+    transition: filter 0.2s;
+  }
+
+  .nav-logo:hover img { filter: brightness(0) opacity(1); }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--orange); }
+  .nav-back svg { width: 16px; height: 16px; }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 120px 48px 100px;
+  }
+
+  .page-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  h1 strong { font-weight: 700; }
+
+  .last-updated {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    margin: 0 0 16px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  ul li {
+    font-size: 16px;
+    color: var(--ink-soft);
+    font-weight: 300;
+    padding: 4px 0 4px 20px;
+    position: relative;
+  }
+
+  ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 400;
+  }
+
+  a { color: var(--orange); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--line);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .footer-copy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .footer-copy a:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .page-wrap { padding: 100px 24px 72px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="images/logo.png" alt="Generations Utopia">
+  </a>
+  <a class="nav-back" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to site
+  </a>
+</nav>
+
+<div class="page-wrap">
+  <p class="page-label">Legal</p>
+  <h1>Privacy <strong>Policy</strong></h1>
+  <p class="last-updated">Last Updated: 31 May 2026</p>
+
+  <p>This Privacy Policy describes how <strong>Tom Yum Games LLC</strong>, a company incorporated and existing under the laws of the Republic of Armenia ("Company", "we", "our", or "us"), processes information in connection with the website generationsutopia.com (the "Website").</p>
+
+  <h2>1. General Information</h2>
+  <p>The Website is intended solely to provide information about the video game Generations: Utopia and related promotional materials. The Website does not provide user accounts, user registration, newsletters, comment sections, forums, or other functionality requiring users to submit personal information directly to us.</p>
+
+  <h2>2. Information We May Collect Automatically</h2>
+  <p>When you visit the Website, certain information may be collected automatically by our hosting providers, analytics services, and embedded third-party content providers. Such information may include:</p>
+  <ul>
+    <li>IP address</li>
+    <li>Browser type and version</li>
+    <li>Operating system information</li>
+    <li>Device information</li>
+    <li>Referring website addresses</li>
+    <li>Pages visited</li>
+    <li>Date and time of access</li>
+    <li>General geographic location derived from IP address</li>
+    <li>Technical information relating to Website performance and usage</li>
+  </ul>
+  <p>This information is generally collected in aggregated or pseudonymized form and is used for analytical, security, and operational purposes.</p>
+
+  <h2>3. Analytics, Measurement and Similar Services</h2>
+  <p>The Website may use various third-party analytics, measurement, performance monitoring, advertising attribution, audience analysis, user behavior analysis, error tracking, security, and similar technology services (collectively, the "Analytics Services"). Such Analytics Services may be provided by Google, Microsoft, Meta, VK, X, hosting providers, content delivery networks, advertising platforms, or other service providers selected by the Company from time to time.</p>
+  <p>The specific Analytics Services used on the Website may change, be replaced, added, or removed without prior notice. These services may collect and process technical and usage-related information, including:</p>
+  <ul>
+    <li>IP address</li>
+    <li>Browser and device information</li>
+    <li>Operating system information</li>
+    <li>Pages visited</li>
+    <li>Session information</li>
+    <li>Referral sources</li>
+    <li>Interaction data</li>
+    <li>Approximate geographic information</li>
+    <li>Cookie identifiers and similar technical identifiers</li>
+    <li>Other information reasonably necessary for analytics, performance measurement, security, and operation of the Website</li>
+  </ul>
+  <p>The Company may use current and future analytics, measurement, monitoring, attribution, advertising, optimization, security, infrastructure, performance monitoring, content delivery, and similar technologies, tools, platforms, and services that are reasonably necessary for the operation, maintenance, development, promotion, analysis, protection, security, and improvement of the Website and related products and services.</p>
+  <p>The Company may update, replace, add, or discontinue such technologies, tools, platforms, and service providers from time to time without prior notice, provided that the nature and purposes of data processing remain substantially consistent with those described in this Privacy Policy. Information collected through such services is processed in accordance with the privacy policies and practices of the respective service providers.</p>
+  <p>The Company reserves the right to engage, replace, discontinue, or add third-party service providers, platforms, software solutions, plugins, embedded content providers, analytics providers, advertising technology providers, cloud infrastructure providers, content delivery networks, security providers, and other technology partners as may be reasonably necessary for the operation, maintenance, development, promotion, security, and improvement of the Website and related products. Such changes shall not require amendment of this Privacy Policy unless otherwise required by applicable law.</p>
+
+  <h2>4. Embedded Media and Third-Party Content</h2>
+  <p>The Website may contain embedded videos, livestreams, images, audio materials, widgets, social media content, game store content, interactive elements, and other content or functionality provided by third-party platforms and service providers (collectively, "Embedded Content"). Such Embedded Content may be provided by YouTube, Steam, X, Telegram, VK, Vimeo, Twitch, TikTok, Rutube, content delivery networks, media hosting providers, social media platforms, or any other third-party services selected by the Company from time to time.</p>
+  <p>When you access, view, interact with, or otherwise use Embedded Content, the relevant third-party provider may collect and process information relating to your device, browser, IP address, cookies, technical identifiers, interaction data, and other information in accordance with its own privacy policies and practices.</p>
+  <p>The Company does not control and is not responsible for the privacy practices, policies, technologies, or data processing activities of third-party providers in connection with Embedded Content. Users are encouraged to review the privacy policies and terms of the relevant third-party providers before interacting with Embedded Content.</p>
+
+  <h2>5. Links to Third-Party Platforms</h2>
+  <p>The Website may contain links directing users to third-party websites and services, including but not limited to: Steam, Telegram, VK, X (formerly Twitter), YouTube. When you leave the Website and access a third-party service, your use of that service is governed by the privacy policies, terms, and practices of the relevant third party. We are not responsible for the privacy practices of third-party websites or services.</p>
+
+  <h2>6. Cookies and Similar Technologies</h2>
+  <p>The Website may use cookies and similar technologies either directly or through third-party services. Cookies may be used for:</p>
+  <ul>
+    <li>Website functionality</li>
+    <li>Security</li>
+    <li>Traffic measurement</li>
+    <li>Analytics</li>
+    <li>Performance optimization</li>
+  </ul>
+  <p>You may control or disable cookies through your browser settings. Disabling certain cookies may affect Website functionality.</p>
+
+  <h2>7. Legal Basis for Processing</h2>
+  <p>Where applicable under relevant data protection laws, information is processed on the basis of:</p>
+  <ul>
+    <li>The Company's legitimate interests in operating, maintaining, securing, analyzing, and improving the Website and related services, where such interests are not overridden by the rights and freedoms of users</li>
+    <li>User consent, where required under applicable law</li>
+    <li>Compliance with legal obligations</li>
+  </ul>
+  <p>The Company has assessed that the processing of limited technical and usage-related data for the purposes described in this Privacy Policy does not disproportionately affect the rights and freedoms of users, taking into account the nature of the Website, the absence of user accounts, and the limited scope of data collection.</p>
+
+  <h2>8. International Data Transfers</h2>
+  <p>Information collected through the Website may be processed and stored in countries other than the country in which you are located. By using the Website, you acknowledge that information may be transferred to and processed in jurisdictions that may provide a different level of data protection than your country of residence.</p>
+
+  <h2>9. Data Security</h2>
+  <p>We implement reasonable technical and organizational measures designed to protect information against unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over the Internet or method of electronic storage can be guaranteed to be completely secure.</p>
+
+  <h2>10. Data Retention</h2>
+  <p>Information is retained only for as long as reasonably necessary for the purposes described in this Privacy Policy, unless a longer retention period is required or permitted by applicable law. Retention periods may vary depending on the nature of the information and the requirements of analytics providers and hosting services.</p>
+
+  <h2>11. Your Rights</h2>
+  <p>Depending on your jurisdiction, you may have rights regarding your personal information, including:</p>
+  <ul>
+    <li>The right to access information concerning you</li>
+    <li>The right to request correction of inaccurate information</li>
+    <li>The right to request deletion of information</li>
+    <li>The right to object to certain processing activities</li>
+    <li>The right to withdraw consent where processing is based on consent</li>
+  </ul>
+  <p>To exercise applicable rights, please contact us using the details below.</p>
+
+  <h2>12. Children's Privacy</h2>
+  <p>The Website is not directed to children as a specific target audience and does not knowingly collect personal data from individuals under the age at which they are considered capable of providing valid consent under applicable law. If we become aware that personal data has been inadvertently collected from a child in violation of applicable law, we will take reasonable steps to delete such information in accordance with applicable legal requirements.</p>
+
+  <h2>13. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Any modifications will be published on this page with an updated revision date.</p>
+
+  <h2>14. Contact Information</h2>
+  <p>Tom Yum Games LLC<br>
+  Republic of Armenia<br>
+  Email: <a href="mailto:tomyumgamesllc@gmail.com">tomyumgamesllc@gmail.com</a></p>
+</div>
+
+<footer>
+  <a href="/" style="font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--ink);text-decoration:none;">
+    <img src="images/logo.png" alt="Generations Utopia" style="height:28px;filter:brightness(0) opacity(0.75);">
+  </a>
+  <span class="footer-copy">© 2025 Tom Yum Games · All rights reserved · <a href="/privacy">Privacy Policy</a></span>
+</footer>
+
+</body>
+</html>
