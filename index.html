@@ -346,6 +346,46 @@
     display: block;
   }
 
+  /* VIDEO PREVIEW */
+  .yt-preview {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: #000;
+  }
+
+  .yt-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .yt-preview:hover img { opacity: 0.7; }
+
+  .yt-play {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px;
+    background: rgba(0,0,0,0.75);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+
+  .yt-preview:hover .yt-play {
+    background: #FF0000;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .yt-play svg { width: 28px; height: 28px; margin-left: 4px; }
+
   /* YOUTUBE FOLLOW BUTTON */
   .yt-follow-wrap {
     margin-top: 16px;
@@ -837,13 +877,13 @@
       <p data-i18n="about_p3"><strong>More than a city-builder.</strong> A deep societal simulation where decisions have real, unpredictable consequences.</p>
     </div>
     <div>
-      <div class="about-visual">
-        <iframe
-          src="https://www.youtube.com/embed/Gz6taWYiDEo"
-          title="Generations Utopia gameplay trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="about-visual" id="ytWrap">
+        <div class="yt-preview" onclick="loadYT()" aria-label="Play trailer">
+          <img src="https://img.youtube.com/vi/Gz6taWYiDEo/maxresdefault.jpg" alt="Gameplay trailer thumbnail" loading="lazy">
+          <div class="yt-play">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
       </div>
       <div class="yt-follow-wrap">
         <a class="yt-btn" href="https://www.youtube.com/@TomYumGames" target="_blank" rel="noopener">
@@ -1167,6 +1207,12 @@
     const detected = saved || (T[browserLang] ? browserLang : 'en');
     if (detected !== 'en') setLang(detected);
   })();
+
+  // ── YOUTUBE LAZY LOAD ─────────────────────────────────────────
+  function loadYT() {
+    const wrap = document.getElementById('ytWrap');
+    wrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/Gz6taWYiDEo?autoplay=1&rel=0" title="Generations Utopia gameplay trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>';
+  }
 
   // ── SLIDER ────────────────────────────────────────────────────
   const track = document.getElementById('sliderTrack');
