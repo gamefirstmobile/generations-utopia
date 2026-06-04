@@ -205,10 +205,10 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">
+  <a class="nav-logo" href="/" onclick="trackEvent('logo_click', {location: 'privacy_nav'})">
     <img src="images/logo.png" alt="Generations Utopia">
   </a>
-  <a class="nav-back" href="/">
+  <a class="nav-back" href="/" onclick="trackEvent('nav_link_click', {section: 'home'})">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Back to site
   </a>
@@ -324,6 +324,43 @@
   </a>
   <span class="footer-copy">© 2025 Tom Yum Games · All rights reserved · <a href="/privacy.html">Privacy Policy</a></span>
 </footer>
+
+<script>
+  const GA_ID = 'G-BEGVGCSTRN';
+
+  function loadGA() {
+    if (window._gaLoaded) return;
+    window._gaLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
+  }
+
+  function trackEvent(eventName, params = {}) {
+    if (window._gaLoaded && window.gtag) {
+      gtag('event', eventName, params);
+    }
+  }
+
+  const COOKIE_KEY = 'cookie_consent';
+  (function() {
+    let consent;
+    try { consent = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+    if (consent === 'accepted') {
+      loadGA();
+    }
+  })();
+
+  // Track page view
+  document.addEventListener('DOMContentLoaded', function() {
+    trackEvent('page_view', {page: 'privacy'});
+  });
+</script>
 
 </body>
 </html>
