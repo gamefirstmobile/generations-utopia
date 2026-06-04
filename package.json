@@ -1,0 +1,12 @@
+{
+  "name": "generations-utopia",
+  "version": "1.0.0",
+  "description": "A game about building a city for every generation",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build step required'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}

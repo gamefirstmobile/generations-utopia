@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+.turbo/
+out/
+
+# Cache
+.cache/
+.vercel/
+.DS_Store
+
+# Lock files are kept for dependency consistency
+# package-lock.json, pnpm-lock.yaml, yarn.lock, bun.lockb should be committed
