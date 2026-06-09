@@ -1,0 +1,43 @@
+# ШАБЛОН — скопируй в .github/workflows/claude-code.yml каждого проекта
+# (candle_player, generations-utopia, gamefirst.pro, ...)
+#
+# Настройка:
+# 1. Скопировать файл в репо проекта: .github/workflows/claude-code.yml
+# 2. Добавить секрет ANTHROPIC_API_KEY:
+#    GitHub → Settings → Secrets and variables → Actions → New repository secret
+# 3. Пуш — Action начнёт работать автоматически
+#
+# Как работает:
+# - Пишешь задачу в GSI Control Deck → кнопка «AI Agent» → создаётся Issue с лейблом "claude-code"
+# - Этот Action срабатывает → Claude Code читает репо, делает изменения, создаёт PR
+# - Также можно написать @claude в любом комментарии к Issue/PR
+
+name: Claude Code Agent
+
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  claude-agent:
+    if: |
+      (github.event_name == 'issues' && github.event.label.name == 'claude-code') ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
